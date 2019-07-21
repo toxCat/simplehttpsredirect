@@ -95,10 +95,6 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 
 	var c *url.URL
 
-	log.Print("request url ", rq.URL.String())
-	log.Print("request url host", rq.URL.Host)
-	log.Print("request orig url", rq.RequestURI)
-
 	{
 		t := *rq.URL
 		tt := t
@@ -106,6 +102,7 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 	}
 
 	c.Scheme = "https"
+	c.Host = rq.Host
 
 	if self.opts.RemovePort || self.opts.Port == 443 {
 		c.Host = c.Hostname()
