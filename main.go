@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
@@ -69,13 +68,6 @@ func main() {
 		log.Fatal("flags parse error: " + err.Error())
 	}
 
-	{
-		b, _ := json.MarshalIndent(opts, "  ", "  ")
-		fmt.Println(string(b))
-	}
-
-	fs.PrintDefaults()
-
 	if opts.ShowHelp {
 		fs.PrintDefaults()
 		log.Fatal("showing help")
@@ -109,6 +101,7 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 	var c *url.URL
 
 	log.Print("request url ", rq.URL.String())
+	log.Print("request url host", rq.URL.Host)
 
 	{
 		t := *rq.URL
