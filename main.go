@@ -97,6 +97,7 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 
 	log.Print("request url ", rq.URL.String())
 	log.Print("request url host", rq.URL.Host)
+	log.Print("request orig url", rq.RequestURI)
 
 	{
 		t := *rq.URL
