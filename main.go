@@ -122,6 +122,9 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 		c.Host = net.JoinHostPort(c.Hostname(), strconv.Itoa(self.opts.Port))
 	}
 
-	rw.Header().Set("Location", c.String())
+	h := rw.Header()
+	h.Set("Location", c.String())
+
+	rw.WriteHeader(self.opts.HttpCode)
 
 }
