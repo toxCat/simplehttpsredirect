@@ -108,11 +108,13 @@ func (self *Server) ServeHTTP(rw http.ResponseWriter, rq *http.Request) {
 
 	var c *url.URL
 
-	{
-		t := *rq.URL
-		tt := t
-		c = &tt
-	}
+	// {
+	// 	t := *rq.URL
+	// 	tt := t
+	// 	c = &tt
+	// }
+
+	c = rq.URL
 
 	c.Scheme = "https"
 
