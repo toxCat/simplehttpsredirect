@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"flag"
-	"fmt"
 	"log"
 	"net"
 	"net/http"
@@ -33,10 +32,6 @@ func parseflags() (*Options, *flag.FlagSet, error) {
 	fs.IntVar(&options.Port, "p", 443, "redefine port")
 	fs.IntVar(&options.HttpCode, "c", 308, "redirection code")
 	fs.StringVar(&options.ServerAddr, "s", "0.0.0.0:80", "set address this server listening on")
-
-	for k, v := range os.Args {
-		fmt.Println(k, v)
-	}
 
 	err := fs.Parse(os.Args[1:])
 	if err != nil {
